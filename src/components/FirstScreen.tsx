@@ -1,5 +1,5 @@
 /* //* Packages Import */
-import { useContext, useRef } from "react";
+import { useContext, useRef, useEffect } from "react";
 
 /* //* Utils Import */
 import { AppContext } from "src/App";
@@ -25,6 +25,10 @@ const FirstScreen = () => {
   };
 
   const handleBackButton = () => state?.setSteps((prev) => prev - 1);
+
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+  }, []);
 
   return (
     <div className={Styles.firstScreen}>

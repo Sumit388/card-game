@@ -1,0 +1,136 @@
+@use "./Base/" as *;
+
+.gamePageContainer {
+  padding-top: 40px;
+  box-sizing: border-box;
+
+  .backButton {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+
+    img {
+      width: 154px;
+    }
+  }
+
+  .outerCardContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+    margin-top: 174px;
+
+    .cardsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      flex-shrink: 1;
+      max-width: 600px;
+      flex-shrink: 1;
+      justify-content: space-between;
+      gap: 35px;
+      margin-right: 20px;
+
+      .cardHolder {
+        width: 173px;
+        height: 221px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .gameOverModal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.692);
+
+    img {
+      cursor: pointer;
+    }
+
+    .score {
+      @include centerAbsolute();
+      transform: translate(-170px, -190px);
+      font-family: Nunito;
+      font-size: $font-56;
+      font-weight: 800;
+      line-height: 99px;
+      letter-spacing: 0.02em;
+      text-align: center;
+      color: $white;
+    }
+
+    .buttonContainer {
+      position: absolute;
+      bottom: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      @include responsive($screen-768) {
+        bottom: 20px;
+      }
+
+      @include responsive($screen-991) {
+        bottom: 60px;
+        justify-content: flex-end;
+      }
+
+      .actionButton {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        width: fit-content;
+      }
+    }
+
+    .matchModalImageContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .matchImages {
+        transform: translate(0, -140px);
+      }
+
+      img {
+        cursor: none;
+
+        &:nth-of-type(1) {
+          transform: translateY(-100px) rotate(-15deg);
+        }
+
+        &:nth-of-type(2) {
+          transform: translateY(50px) rotate(15deg);
+        }
+      }
+
+      p {
+        margin-left: 700px;
+        font-family: Nunito;
+        font-size: 96px;
+        font-weight: 800;
+        line-height: 131px;
+        letter-spacing: 0.08em;
+        text-align: center;
+        color: $orange;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: $white;
+      }
+    }
+  }
+}

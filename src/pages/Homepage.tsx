@@ -14,7 +14,7 @@ const Homepage = () => {
   const state = useContext(AppContext);
   return (
     <div className={Styles.homepage}>
-      {state?.steps && state?.steps <= 3 && <FirstScreen />}
+      {state?.steps && state?.steps <= 4 && <FirstScreen />}
     </div>
   );
 };

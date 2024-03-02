@@ -5,6 +5,7 @@ import bubble3 from "../assets/textBubble3.png";
 import buttonImg1 from "../assets/actionButton1.png";
 import buttonImg2 from "../assets/actionButton2.png";
 import buttonImg3 from "../assets/actionButton3.png";
+import buttonImg4 from "../assets/actionButton4.png";
 import backButton from "../assets/back.png";
 
 export const getImage = (
@@ -24,6 +25,8 @@ export const getImage = (
       return buttonImg2;
     case type === "button" && pageNumber === 3:
       return buttonImg3;
+    case type === "button" && pageNumber === 4:
+      return buttonImg4;
     case type === "backButton":
       return backButton;
   }

@@ -1,5 +1,5 @@
 /* //* Packages Import */
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 
 /* //* Utils Import */
 import { AppContext } from "src/App";
@@ -10,11 +10,19 @@ import monkey from "src/assets/monkey.png";
 
 /* //* Styles Import */
 import Styles from "src/styles/Homepage.module.scss";
+import InstructionCards from "./InstructionCards";
 
 const FirstScreen = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
   const state = useContext(AppContext);
 
-  const handleNextStep = () => state?.setSteps((prev) => prev + 1);
+  const handleNextStep = () => {
+    state?.setSteps((prev) => prev + 1);
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  };
 
   const handleBackButton = () => state?.setSteps((prev) => prev - 1);
 
@@ -25,20 +33,25 @@ const FirstScreen = () => {
           <img
             src={getImage("backButton", state?.steps as number)}
             loading="lazy"
-            alt="monkey"
+            alt="back Button"
           />
         </button>
       )}
-      <div className={Styles.monkey}>
-        <img src={monkey} loading="lazy" alt="monkey" />
-      </div>
-      <div className={Styles.textBubble}>
-        <img
-          src={getImage("bubble", state?.steps as number)}
-          loading="lazy"
-          alt="textBubble"
-        />
-      </div>
+      {state?.steps && state?.steps <= 3 && (
+        <div className={Styles.monkey}>
+          <img src={monkey} loading="lazy" alt="monkey" />
+        </div>
+      )}
+      {state?.steps && state?.steps <= 3 && (
+        <div className={Styles.textBubble}>
+          <img
+            src={getImage("bubble", state?.steps as number)}
+            loading="lazy"
+            alt="textBubble"
+          />
+        </div>
+      )}
+      {state?.steps && state?.steps === 4 && <InstructionCards />}
       <div className={Styles.buttonContainer}>
         <button className={Styles.actionButton} onClick={handleNextStep}>
           <img

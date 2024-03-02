@@ -19,6 +19,7 @@ const RewardScreen = ({ score }: rewardScreenPropsType) => {
     document.body.scrollTop = 0;
     document.body.style.overflow = "hidden";
   }, []);
+
   return (
     <div className={Styles.gameOverModal}>
       <img src={bg} loading="lazy" alt="bg" onClick={handleBackButton} />

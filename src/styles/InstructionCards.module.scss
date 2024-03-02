@@ -29,6 +29,7 @@
     padding: 22px 50px;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
 
     .imageContainer {
       width: 100%;
@@ -58,6 +59,7 @@
       .tagBg {
         position: absolute;
         z-index: 0;
+        left: -4px;
       }
 
       p {

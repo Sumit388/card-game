@@ -16,6 +16,8 @@ type matchModalPropsType = {
 
 type rewardScreenPropsType = { score: number };
 
+type progressBarPropsType = { score: number; lives: number; gameOver: boolean };
+
 type instructionsCardsType = {
   id: number;
   description: string;
@@ -23,4 +25,5 @@ type instructionsCardsType = {
   subDescription: string;
   img: JSX.Element;
   secondSubDescription?: string;
+  tagImage: JSX.Element;
 };

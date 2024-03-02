@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 /* //* Components Import */
 import RewardScreen from "src/components/RewardScreen";
 import MatchModal from "src/components/MatchModal";
+import ProgressBar from "src/components/ProgressBar";
 
 /* //* Utils Import */
 import { getImage } from "src/utils/utils";
@@ -116,8 +117,15 @@ const GameScreen = () => {
     }
   }, [tries, score]);
 
+  useEffect(() => {
+    if (!matchFound) {
+      document.body.style.overflow = "auto";
+    }
+  }, [matchFound]);
+
   return (
     <div className={Styles.gamePageContainer}>
+      <ProgressBar score={score} lives={tries} gameOver={gameOver} />
       <button className={Styles.backButton} onClick={handleBackButton}>
         <img
           src={getImage("backButton", state?.steps as number)}
@@ -125,7 +133,6 @@ const GameScreen = () => {
           alt="back Button"
         />
       </button>
-      <div className={Styles.score}>{score}</div>
       {!gameOver && (
         <div className={Styles.outerCardContainer}>
           {!redCardOpened && (

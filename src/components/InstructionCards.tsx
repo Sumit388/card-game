@@ -1,5 +1,4 @@
 /* //* Assets Import */
-import tag from "src/assets/numberTag.svg";
 import path from "src/assets/bgPath.svg";
 
 /* //* Data Import */
@@ -21,9 +20,7 @@ const InstructionCards = () => {
         <div className={Styles.cardContainer} key={card.id}>
           <div className={Styles.imageContainer}>{card?.img}</div>
           <div className={Styles.numberTag}>
-            <div className={Styles.tagBg}>
-              <img src={tag} loading="lazy" alt="number tag" />
-            </div>
+            <div className={Styles.tagBg}>{card?.tagImage}</div>
             <p>0{card?.id}</p>
           </div>
           {card?.secondSubDescription && (

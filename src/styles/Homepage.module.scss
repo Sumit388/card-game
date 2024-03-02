@@ -42,6 +42,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    @include upDownAnimation();
 
     @include responsive($screen-768) {
       bottom: 50%;

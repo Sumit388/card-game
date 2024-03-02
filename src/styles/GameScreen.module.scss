@@ -21,15 +21,23 @@
   .outerCardContainer {
     display: flex;
     justify-content: space-between;
-    gap: 40px;
     width: 100%;
     margin-top: 174px;
     position: relative;
 
+    @include responsive($screen-991) {
+      gap: 40px;
+    }
+
     .instructionBlueImage,
     .instructionRedImage {
       position: absolute;
+      display: none;
       @include upDownAnimation();
+
+      @include responsive($screen-991) {
+        display: block;
+      }
     }
 
     .instructionRedImage {
@@ -50,8 +58,11 @@
       flex-shrink: 1;
       justify-content: space-between;
       gap: 35px;
-      margin-right: 20px;
-      margin-left: 20px;
+
+      @include responsive($screen-991) {
+        margin-right: 20px;
+        margin-left: 20px;
+      }
 
       .cardHolder {
         width: 173px;
@@ -86,28 +97,30 @@
 
     .score {
       @include centerAbsolute();
-      transform: translate(-170px, -190px);
+      transform: translate(-110px, -190px);
       font-family: Nunito;
-      font-size: $font-56;
+      font-size: $font-28;
       font-weight: 800;
       line-height: 99px;
       letter-spacing: 0.02em;
       text-align: center;
       color: $white;
+
+      @include responsive($screen-991) {
+        font-size: $font-56;
+        transform: translate(-170px, -190px);
+      }
     }
 
     .buttonContainer {
       position: absolute;
-      bottom: 50%;
+      top: 180px;
       width: 100%;
       display: flex;
       justify-content: center;
 
-      @include responsive($screen-768) {
-        bottom: 20px;
-      }
-
       @include responsive($screen-991) {
+        top: auto;
         bottom: 60px;
         justify-content: flex-end;
       }
@@ -127,26 +140,31 @@
       flex-direction: column;
 
       .matchImages {
-        transform: translate(-140px, -140px);
-        display: flex;
+        @include responsive($screen-991) {
+          transform: translate(-140px, -140px);
+          display: flex;
+        }
       }
 
       .img {
         cursor: none;
 
         &:nth-of-type(1) {
-          transform: translateY(-100px) rotate(-15deg);
+          @include responsive($screen-991) {
+            transform: translateY(-100px) rotate(-15deg);
+          }
         }
 
         &:nth-of-type(2) {
-          transform: translateY(50px) rotate(15deg);
+          @include responsive($screen-991) {
+            transform: translateY(50px) rotate(15deg);
+          }
         }
       }
 
       .message {
-        margin-left: 700px;
         font-family: Nunito;
-        font-size: 96px;
+        font-size: $font-56;
         font-weight: 800;
         line-height: 131px;
         letter-spacing: 0.08em;
@@ -154,10 +172,18 @@
         color: $orange;
         -webkit-text-stroke-width: 3px;
         -webkit-text-stroke-color: $white;
+
+        @include responsive($screen-991) {
+          margin-left: 700px;
+          font-size: 96px;
+        }
       }
 
       .letter {
-        transform: translate(90px);
+        transform: translate(0px, 120px);
+        @include responsive($screen-991) {
+          transform: translate(90px);
+        }
       }
     }
   }

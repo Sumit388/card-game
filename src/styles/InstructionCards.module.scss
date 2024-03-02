@@ -4,9 +4,13 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 240px;
+  margin-top: 300px;
   padding: 0 40px;
   position: relative;
+
+  @include responsive($screen-991) {
+    margin-top: 240px;
+  }
 
   .bgPath {
     position: absolute;
@@ -30,6 +34,7 @@
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
+    margin-bottom: 20px;
 
     .imageContainer {
       width: 100%;

@@ -5,7 +5,7 @@
   height: 100%;
   width: 100%;
   z-index: 1;
-  overflow: hidden;
+  overflow-x: hidden;
 
   .monkey {
     position: absolute;
@@ -70,16 +70,13 @@
 
   .buttonContainer {
     position: absolute;
-    bottom: 50%;
+    top: 200px;
     width: 100%;
     display: flex;
     justify-content: center;
 
-    @include responsive($screen-768) {
-      bottom: 20px;
-    }
-
     @include responsive($screen-991) {
+      top: auto;
       bottom: 60px;
       justify-content: flex-end;
     }

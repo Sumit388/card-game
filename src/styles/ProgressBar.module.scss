@@ -3,11 +3,19 @@
 .barContainer {
   position: absolute;
   top: 20px;
-  width: 100%;
+  width: 60%;
+  margin-left: 160px;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
+
+  @include responsive($screen-991) {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
 
   .outerBox {
     width: 100%;
@@ -43,5 +51,10 @@
     letter-spacing: 0em;
     text-align: center;
     color: $red;
+    display: none;
+
+    @include responsive($screen-991) {
+      display: block;
+    }
   }
 }

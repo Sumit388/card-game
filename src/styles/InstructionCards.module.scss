@@ -70,18 +70,16 @@
       p {
         position: relative;
         z-index: 1;
-        font-family: Nunito;
         font-size: 36px;
         font-weight: 800;
         letter-spacing: 0.02em;
         text-align: center;
         color: $white;
-        transform: translate(10px, -24px);
+        transform: translate(0px, -30px);
       }
     }
 
     .subDescription {
-      font-family: Nunito;
       font-size: $font-24;
       font-weight: 800;
       line-height: 33px;
@@ -91,7 +89,6 @@
     }
 
     .description {
-      font-family: Nunito;
       font-size: 40px;
       font-weight: 800;
       line-height: 55px;

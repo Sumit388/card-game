@@ -106,7 +106,7 @@
       color: $white;
 
       @include responsive($screen-991) {
-        font-size: $font-56;
+        font-size: $font-48;
         transform: translate(-170px, -190px);
       }
     }

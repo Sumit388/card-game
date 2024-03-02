@@ -17,7 +17,7 @@ const InstructionCards = () => {
         alt="background path"
         className={Styles.bgPath}
       />
-      {CARD_DATA.map((card) => (
+      {CARD_DATA.map((card: instructionsCardsType) => (
         <div className={Styles.cardContainer} key={card.id}>
           <div className={Styles.imageContainer}>{card?.img}</div>
           <div className={Styles.numberTag}>

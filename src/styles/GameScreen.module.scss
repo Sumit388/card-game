@@ -24,6 +24,22 @@
     gap: 40px;
     width: 100%;
     margin-top: 174px;
+    position: relative;
+
+    .instructionBlueImage,
+    .instructionRedImage {
+      position: absolute;
+    }
+
+    .instructionRedImage {
+      top: -200px;
+      left: 150px;
+    }
+
+    .instructionBlueImage {
+      bottom: -230px;
+      right: 100px;
+    }
 
     .cardsContainer {
       display: flex;
@@ -34,6 +50,7 @@
       justify-content: space-between;
       gap: 35px;
       margin-right: 20px;
+      margin-left: 20px;
 
       .cardHolder {
         width: 173px;
@@ -104,10 +121,11 @@
       flex-direction: column;
 
       .matchImages {
-        transform: translate(0, -140px);
+        transform: translate(-140px, -140px);
+        display: flex;
       }
 
-      img {
+      .img {
         cursor: none;
 
         &:nth-of-type(1) {
@@ -119,7 +137,7 @@
         }
       }
 
-      p {
+      .message {
         margin-left: 700px;
         font-family: Nunito;
         font-size: 96px;
@@ -131,6 +149,62 @@
         -webkit-text-stroke-width: 3px;
         -webkit-text-stroke-color: $white;
       }
+
+      .letter {
+        transform: translate(90px);
+      }
     }
+  }
+}
+
+.letterCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-20px, -20px);
+  }
+
+  p {
+    position: absolute;
+    font-family: Nunito;
+    font-size: 97px;
+    font-weight: 400;
+    line-height: 121px;
+    letter-spacing: 0em;
+    text-align: center;
+    // transform: translate(50px, -50px);
+    color: $purple;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: $white;
+  }
+}
+
+.imageCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .playingCardImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-20px, -20px);
+    width: 100%;
+  }
+
+  .fruitImage {
+    position: absolute;
+    width: 50%;
   }
 }

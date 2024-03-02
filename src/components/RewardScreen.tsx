@@ -10,7 +10,7 @@ import bg from "src/assets/rewardBg.png";
 /* //* Styles Import */
 import Styles from "src/styles/GameScreen.module.scss";
 
-const RewardScreen = ({ score }: { score: number }) => {
+const RewardScreen = ({ score }: rewardScreenPropsType) => {
   const state = useContext(AppContext);
   const handleBackButton = () => state?.setSteps((prev) => prev - 1);
 

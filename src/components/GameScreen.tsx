@@ -15,23 +15,31 @@ import { BLUE_CARD_DATA, RED_CARD_DATA } from "src/data/GameData";
 /* //* Assets Import */
 import blueCard from "src/assets/blueCard.png";
 import redCard from "src/assets/redCard.png";
+import instructionRed from "src/assets/instruction1.png";
+import instructionBlue from "src/assets/instruction2.png";
 
 /* //* Styles Import */
 import Styles from "src/styles/GameScreen.module.scss";
 
 const GameScreen = () => {
   const state = useContext(AppContext);
-  const [blueCardList, setBlueCardList] = useState(BLUE_CARD_DATA);
-  const [redCardList, setRedCardList] = useState(RED_CARD_DATA);
+  const [blueCardList, setBlueCardList] =
+    useState<cardDetailsListType>(BLUE_CARD_DATA);
+  const [redCardList, setRedCardList] =
+    useState<cardDetailsListType>(RED_CARD_DATA);
   const [redCardOpened, setRedCardOpened] = useState<boolean>(false);
   const [tries, setTries] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [matchFound, setMatchFound] = useState<boolean>(false);
+  const [matchImages, setMatchImages] = useState<Array<JSX.Element>>([]);
 
   const handleBackButton = () => state?.setSteps((prev) => prev - 1);
 
-  const handleCardUpdates = (openedBlueCard: any, openedRedCard: any) => {
+  const handleCardUpdates = (
+    openedBlueCard: cardDetailsType,
+    openedRedCard: cardDetailsType
+  ) => {
     if (openedBlueCard.value === openedRedCard.value) {
       setBlueCardList((cardListValue) =>
         cardListValue.map((card) => {
@@ -63,7 +71,7 @@ const GameScreen = () => {
     );
   };
 
-  const checkMatchAndUpdate = (blueCardListValue: any) => {
+  const checkMatchAndUpdate = (blueCardListValue: cardDetailsListType) => {
     const openedRedCard = redCardList.filter((card) => card.opened)?.[0];
     const openedBlueCard = blueCardListValue.filter(
       (card: any) => card.opened
@@ -74,14 +82,19 @@ const GameScreen = () => {
 
   const openCard = (id: number, type: string) => {
     let cardListValue = type === "red" ? redCardList : blueCardList;
+    let selectedCard: JSX.Element = <></>;
     cardListValue = cardListValue.map((card) => {
-      if (card?.id === id) return { ...card, opened: true };
-      else return card;
+      if (card?.id === id) {
+        selectedCard = card?.image;
+        return { ...card, opened: true };
+      } else return card;
     });
     if (type === "red") {
+      setMatchImages([selectedCard]);
       setRedCardList(cardListValue);
       setRedCardOpened(true);
     } else {
+      setMatchImages((matchImages) => [...matchImages, selectedCard]);
       setBlueCardList(cardListValue);
       setRedCardOpened(false);
       checkMatchAndUpdate(cardListValue);
@@ -115,12 +128,20 @@ const GameScreen = () => {
       <div className={Styles.score}>{score}</div>
       {!gameOver && (
         <div className={Styles.outerCardContainer}>
+          {!redCardOpened && (
+            <img
+              src={instructionRed}
+              loading="lazy"
+              alt="Instruction 1"
+              className={Styles.instructionRedImage}
+            />
+          )}
           <div className={Styles.cardsContainer}>
-            {redCardList.map((card) => (
+            {redCardList.map((card: cardDetailsType) => (
               <div className={Styles.cardHolder} key={card?.id}>
                 {!card?.checked &&
                   (card.opened ? (
-                    card?.fruit
+                    card?.image
                   ) : (
                     <img
                       src={redCard}
@@ -133,11 +154,19 @@ const GameScreen = () => {
             ))}
           </div>
           <div className={Styles.cardsContainer}>
-            {blueCardList.map((card) => (
+            {redCardOpened && (
+              <img
+                src={instructionBlue}
+                loading="lazy"
+                alt="Instruction 2"
+                className={Styles.instructionBlueImage}
+              />
+            )}
+            {blueCardList.map((card: cardDetailsType) => (
               <div className={Styles.cardHolder} key={card?.id}>
                 {!card?.checked &&
                   (card?.opened ? (
-                    card?.value
+                    card?.image
                   ) : (
                     <img
                       src={blueCard}
@@ -153,13 +182,7 @@ const GameScreen = () => {
       )}
       {gameOver && <RewardScreen score={score} />}
       {matchFound && (
-        <MatchModal
-          matchImages={[
-            <img src={blueCard} loading="lazy" alt="Blue Card" />,
-            <img src={blueCard} loading="lazy" alt="Blue Card" />,
-          ]}
-          setMatchFound={setMatchFound}
-        />
+        <MatchModal matchImages={matchImages} setMatchFound={setMatchFound} />
       )}
     </div>
   );

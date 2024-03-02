@@ -1,5 +1,5 @@
 /* //* Packages Import */
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 /* //* Utils Import */
 import { AppContext } from "src/App";
@@ -13,15 +13,10 @@ import Styles from "src/styles/Homepage.module.scss";
 import InstructionCards from "./InstructionCards";
 
 const FirstScreen = () => {
-  const audioRef = useRef<HTMLAudioElement>(null);
   const state = useContext(AppContext);
 
   const handleNextStep = () => {
     state?.setSteps((prev) => prev + 1);
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-    }
   };
 
   const handleBackButton = () => state?.setSteps((prev) => prev - 1);

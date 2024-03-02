@@ -7,7 +7,7 @@ import { getImage } from "src/utils/utils";
 /* //* Styles Import */
 import Styles from "src/styles/GameScreen.module.scss";
 
-const MatchModal = ({ matchImages, setMatchFound }: any) => {
+const MatchModal = ({ matchImages, setMatchFound }: matchModalPropsType) => {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -16,10 +16,10 @@ const MatchModal = ({ matchImages, setMatchFound }: any) => {
   return (
     <div className={Styles.gameOverModal}>
       <div className={Styles.matchModalImageContainer}>
-        <p>It's a match !</p>
+        <p className={Styles.message}>It's a match !</p>
         <div className={Styles.matchImages}>
-          {matchImages[0]}
-          {matchImages[1]}
+          <div className={Styles.img}>{matchImages[0]}</div>
+          <div className={Styles.img}> {matchImages[1]}</div>
         </div>
       </div>
       <div className={Styles.buttonContainer}>
